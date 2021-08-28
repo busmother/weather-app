@@ -1,24 +1,32 @@
-import './App.css';
-import Header from '../../components/Header/Header.js'
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { MoonLoader } from 'react-spinners';
+
+import classes from './App.module.css';
+import Card from '../../elements/Card/Card';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import WeatherDetails from '../../components/WeatherDetails/WeatherDetails';
+import Preview from '../../components/Preview/Preview';
+import ErrorNotice from '../../components/ErrorNotice/ErrorNotice';
+
+class App extends Component {
+  render() {
+    return (
+      <div className={classes.AppWrapper}>
+        <Header />
+        <main className={classes.AppMain}>
+          <SearchBar />
+          <Card>
+            <WeatherDetails />
+
+          </Card>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
