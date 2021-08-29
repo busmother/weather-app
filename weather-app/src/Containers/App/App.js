@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { MoonLoader } from 'react-spinners';
 
-import classes from './App.module.css';
+// import classes from './App.module.css';
 import Card from '../../elements/Card/Card';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
