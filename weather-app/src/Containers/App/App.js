@@ -30,7 +30,7 @@ class App extends Component {
     })
   }
 
-  tyAgainHandler = () => {
+  tryAgainHandler = () => {
     this.setState({
       searchBarInput: '',
       weatherDetials: {},
@@ -74,17 +74,34 @@ class App extends Component {
   }
 
   render() {
+
+    let cardContent = <Preview />;
+    if (this.state.loading) {
+      cardContent = <MoonLoader />;
+    } else if (this.state.error) {
+      cardContent = <ErrorNotice onClickHandler={this.tryAgainHandler} />;
+    } else if (this.state.weatherDetails.temperature && this.state.weatherDetails.description !== '') {
+      cardContent = <WeatherDetails data={this.state.weatherDetails} />
+    }
+
     return (
       <div className={classes.AppWrapper}>
-        <Header />
+        <Header 
+        color={assetMapping.colors[
+          (this.state.error) ? "error" : this.state.weatherDetails.description
+        ]}
+        onClickHandler={this.tryAgainHandler} />
         <main className={classes.AppMain}>
-          <SearchBar />
+          <SearchBar 
+          value={this.state.searchBarInput}
+          onChangeHandler={this.searchBarHandler}
+          onClickHandler={this.setWeather}
+          error={thios.state.error} />
           <Card>
-            <WeatherDetails />
-
+            {cardContent}
           </Card>
         </main>
-        <Footer />
+        <Footer onClickHandler={this.tryAgainHandler}/>
       </div>
     );
   }
