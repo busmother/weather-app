@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import { MoonLoader } from 'react-spinners';
 
-// import classes from './App.module.css';
+import classes from './App.module.css';
+import assetMapping from '../../assets/assetMapping.json';
 import Card from '../../elements/Card/Card';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -12,6 +13,17 @@ import Preview from '../../components/Preview/Preview';
 import ErrorNotice from '../../components/ErrorNotice/ErrorNotice';
 
 class App extends Component {
+
+  state = {
+    searchBarInput: '',
+    weatherDetails: {
+      temperature:null,
+      description: ''
+    },
+    loading: false,
+    error: false
+  }
+
   render() {
     return (
       <div className={classes.AppWrapper}>
