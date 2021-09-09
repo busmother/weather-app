@@ -30,6 +30,14 @@ class App extends Component {
     })
   }
 
+  tyAgainHandler = () => {
+    this.setState({
+      searchBarInput: '',
+      weatherDetials: {},
+      error: false
+    })
+  }
+
   render() {
     return (
       <div className={classes.AppWrapper}>
