@@ -24,6 +24,12 @@ class App extends Component {
     error: false
   }
 
+  searchBarHandler = (e) => {
+    this.setState({
+      searchBarInput: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className={classes.AppWrapper}>
