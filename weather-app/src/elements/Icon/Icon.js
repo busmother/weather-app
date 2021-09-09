@@ -1,9 +1,12 @@
 import React from 'react';
 
-const Icon = () => {
+const icon = (props) => {
     return(
-        <div></div>
-    )
+        <img
+            src={require(`../../assets/images${props.type}.svg`)}
+            alt={props.type}
+            className={classes.Icon} />
+    );
 }
 
-export default Icon;
+export default icon;
