@@ -38,6 +38,41 @@ class App extends Component {
     })
   }
 
+  setWeather = () => {
+    const city = this.state.searchBarInput;
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+    const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
+    const URL = API_URL + `?q=${city}$appid=${API_KEY}$units=metric`;
+    this.setState({
+      weatherDetails: {},
+      loading: true,
+      error: false
+    }, *() => {
+      fetch(URL)
+      .then(res => res.json())
+      .then(data => {
+        if(data.cod === 2000) {
+          this.setState({
+            weatherDetails: {
+              temperature: data.main.temp,
+              description: data.weather[0].main
+            },
+            loading: false
+          });
+        } else {
+          throw data.cod
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          loading: false,
+          error: true
+        });
+      });
+    });
+  }
+
   render() {
     return (
       <div className={classes.AppWrapper}>
