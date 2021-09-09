@@ -1,9 +1,20 @@
 import React from 'react';
 
-const Button = () => {
+import classes from './Button.module.css';
+
+const button = (props) => {
+    let buttonClasses = [
+        class.ButtonWrapper,
+        (props.position === 'onForm') ? classes.FormButtonWrapper : null
+    ];
     return(
-        <div></div>
-    )
+        <div className={buttonClasses.join(' ')}>
+            <button
+            type={props.type}
+            name={props.name}
+            onClick={props.clicked}>{props.children}</button>
+        </div>
+    );
 }
 
-export default Button;
+export default button;
